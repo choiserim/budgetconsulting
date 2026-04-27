@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplementary Budget Strategy: 2026 추경 대응 전략 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            accent: '#F59E0B',
+                            gold: '#D4AF37',
+                            deep: '#0F172A',
+                            info: '#3B82F6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F8FAFC; color: #1E293B; word-break: keep-all; }
+        .info-card { transition: all 0.3s ease; border-top: 4px solid #D4AF37; }
+        .info-card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); }
+        .pdf-capture-mode .no-pdf { display: none !important; }
+        .gradient-bg { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+        .pdf-page { width: 1200px; margin: 0 auto; background-color: #F8FAFC; position: relative; box-sizing: border-box; }
+        @media screen { .pdf-page-break { margin-top: 4rem; padding-top: 4rem; border-top: 1px dashed #CBD5E1; } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="capture-area">
+        <!-- [PAGE 1] -->
+        <div class="pdf-page pb-24">
+            <!-- Header Section -->
+            <header class="w-full gradient-bg text-white pt-24 pb-20 px-16 rounded-b-[40px] relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold blur-[120px] opacity-20"></div>
+                
+                <div class="max-w-6xl mx-auto relative z-10">
+                    <div class="inline-block px-4 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold tracking-widest mb-6 border border-brand-gold/30 uppercase">
+                        SAMSUNG LIFE | HERITAGE STRATEGY
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                        2026 정부지원금<br>
+                        <span class="text-brand-gold text-shadow-sm">심화 활용 및 자산 컨설팅</span>
+                    </h1>
+                    <p class="text-slate-300 text-xl font-light max-w-2xl leading-relaxed">
+                        확보된 자금은 단순히 운영비로 소진될 것인가, 자산의 방패가 될 것인가?<br>
+                        2026년 추경 자금의 **성격별 맞춤 솔루션**을 통해 귀하의 헤리티지를 완성하십시오.
+                    </p>
+                    
+                    <div class="mt-10 flex gap-4 no-pdf">
+                        <button id="download-btn" onclick="exportToPDF()" class="bg-brand-gold text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:brightness-110 transition-all">
+                            전략 리포트 PDF 다운로드
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main class="max-w-6xl mx-auto px-16 pt-20">
+                <section class="mb-16">
+                    <div class="flex items-end justify-between mb-10 border-b border-slate-200 pb-4">
+                        <div>
+                            <h2 class="text-3xl font-black text-brand-deep font-display uppercase tracking-tight">01. 지원금별 특화 컨설팅 시나리오</h2>
+                            <p class="text-slate-500 mt-2">자금의 성격을 분석하여 가장 효율적인 자산 재배치 경로를 제안합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="funding-cards">
+                        <!-- JS injected cards with deep consulting content -->
+                    </div>
+                </section>
+
+                <section class="bg-brand-deep text-white p-12 rounded-[32px] relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 right-0 w-32 h-full bg-brand-gold/10 skew-x-[-20deg] translate-x-16"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                            <span class="w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center text-brand-deep text-sm font-black">!</span>
+                            파트너 제언: "자금의 꼬리표를 바꾸십시오"
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div>
+                                <p class="text-slate-300 leading-relaxed mb-6">
+                                    대부분의 경영자는 지원금을 '매출의 보전'으로 생각합니다. 하지만 이는 일회성 수익에 불과합니다. 진정한 자산가는 이 자금을 **'비용의 대체'**로 사용합니다. 
+                                </p>
+                                <p class="text-slate-300 leading-relaxed font-bold">
+                                    지원금으로 기존의 고정 비용(임대료, 세금)을 충당하고, 거기서 확보된 순수 현금흐름(Cash Flow)을 통해 향후 10년의 리스크를 방어하는 '선납 재원'으로 만드는 것이 컨설팅의 핵심입니다.
+                                </p>
+                            </div>
+                            <div class="bg-white/5 p-8 rounded-2xl border border-white/10 space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-bold">Q</div>
+                                    <p class="text-sm">"지원금이 끊기면 다시 리스크에 노출되지 않을까요?"</p>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-brand-info/20 flex items-center justify-center text-brand-info font-bold">A</div>
+                                    <p class="text-sm text-brand-gold font-bold">"지원금으로 보장의 초석을 다져두면, 지원이 종료된 후에도 귀하의 자산은 스스로를 보호하는 시스템을 갖게 됩니다."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- [PAGE 2] -->
+        <div class="pdf-page pdf-page-break py-24">
+            <main class="max-w-6xl mx-auto px-16">
+                <section class="mb-20">
+                    <h2 class="text-3xl font-black text-brand-deep mb-8 font-display uppercase tracking-tight">02. 기대 효과 및 자산 증대 시뮬레이션</h2>
+                    <div class="bg-white p-10 rounded-[32px] border border-slate-200 shadow-xl flex flex-col md:flex-row gap-12 items-center">
+                        <div class="w-full md:w-1/2 chart-wrapper h-[400px]">
+                            <canvas id="strategyChart"></canvas>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <h4 class="text-xl font-bold mb-6 text-brand-deep">컨설팅 전/후 자산 안전성 비교</h4>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-sm font-bold">단순 운영비 지출 시 안전성</span>
+                                        <span class="text-sm text-slate-400">Low</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-slate-300 h-full w-[20%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-sm font-bold text-brand-gold">헤리티지 자산 재배치 시 안전성</span>
+                                        <span class="text-sm text-brand-gold">High Performance</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-brand-gold h-full w-[95%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-10 grid grid-cols-2 gap-4">
+                                <div class="p-4 bg-slate-50 rounded-xl text-center">
+                                    <p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Tax Saving</p>
+                                    <p class="text-lg font-black text-brand-deep">연 최대 16.5%</p>
+                                </div>
+                                <div class="p-4 bg-slate-50 rounded-xl text-center">
+                                    <p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Risk Coverage</p>
+                                    <p class="text-lg font-black text-brand-deep">최대 200배</p>
+                                </div>
+                            </div>
+                            <div class="mt-6 p-6 bg-brand-deep text-white rounded-2xl">
+                                <p class="text-sm leading-relaxed">
+                                    "2026년 추경은 단순한 원조가 아닙니다. 귀하의 법인과 개인 자산을 분리하고, 국가의 예산으로 귀하의 **상속 재원**을 선적립할 수 있는 단 한 번의 기회입니다."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+                    <div class="p-8 bg-brand-info/5 rounded-3xl border border-brand-info/20">
+                        <h4 class="text-lg font-bold mb-4 flex items-center gap-2 text-brand-info">
+                            <span>📋</span> 맞춤형 신청 지원 서비스
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            신청 과정에서의 서류 미비로 인한 탈락을 방지하기 위해, 재무제표 분석 및 경영 목적 최적화 가이드를 제공합니다.
+                        </p>
+                        <ul class="text-xs text-slate-500 space-y-2">
+                            <li class="flex gap-2">✔ 기업 신용 평가 등급 관리 상담</li>
+                            <li class="flex gap-2">✔ 자금 성격에 맞는 정관 변경 및 규정 정비</li>
+                            <li class="flex gap-2 text-brand-info font-bold">✔ 사후 관리(정산) 대응 프로세스 구축</li>
+                        </ul>
+                    </div>
+                    <div class="p-8 bg-brand-gold/5 rounded-3xl border border-brand-gold/20">
+                        <h4 class="text-lg font-bold mb-4 flex items-center gap-2 text-brand-gold">
+                            <span>⚜️</span> VIP 헤리티지 연계 전략
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            확보된 자금을 단순히 보관하지 않고, 가업 승계 및 증여세 재원으로 치환하여 자산의 대물림 효율을 높입니다.
+                        </p>
+                        <ul class="text-xs text-slate-500 space-y-2">
+                            <li class="flex gap-2">✔ 무해지환급형 상품을 통한 비용 효율 극대화</li>
+                            <li class="flex gap-2 text-brand-gold font-bold">✔ CEO 유동성 확보 및 퇴직금 플랜 매칭</li>
+                            <li class="flex gap-2">✔ 증여/상속세 재원 마련을 위한 선제적 세무 컨설팅</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Profile Card Section -->
+                <section class="pt-20 border-t border-slate-200">
+                    <div class="text-center mb-12">
+                        <h3 class="text-2xl font-black text-brand-deep mb-2 font-display uppercase tracking-tighter">"정부의 예산을 귀하의 자산으로 치환하십시오"</h3>
+                        <p class="text-slate-500">지원금 신청 서류 준비부터 최적의 자산 재배치까지, 최세림 파트너가 동행합니다.</p>
+                    </div>
+
+                    <div class="max-w-[800px] mx-auto bg-white rounded-[32px] p-8 flex flex-col md:flex-row items-center justify-between shadow-2xl border border-slate-100 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-brand-gold"></div>
+                        <div class="flex items-center gap-8 mb-6 md:mb-0">
+                            <div class="w-24 h-24 bg-slate-50 rounded-2xl p-1 shadow-inner flex items-center justify-center border border-slate-100">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fmws.samsunglife.com%3A8440%2F%23%2Fmain%2Fbc%2FTSSBC500M%3Fmdigitkey%3D0002221232" alt="QR" class="w-full h-full object-contain">
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[10px] font-bold text-brand-gold tracking-tighter mb-1 uppercase">Samsung Life | Heritage Specialist</p>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h4 class="text-3xl font-black text-slate-900 leading-none">최세림</h4>
+                                    <span class="bg-brand-gold text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Private Banker</span>
+                                </div>
+                                <p class="text-xl font-bold text-slate-700">010-7526-1826</p>
+                            </div>
+                        </div>
+                        <div class="text-right border-l-0 md:border-l-2 border-slate-100 pl-0 md:pl-8">
+                            <p class="text-sm font-bold text-slate-800 mb-2 font-display uppercase tracking-widest">Heritage Consulting</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                귀하의 프라이버시를 최우선으로 합니다.<br>
+                                <span class="text-brand-gold font-bold">편안한 장소와 시간으로</span> 직접 방문하겠습니다.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const fundingData = [
+            {
+                title: '경영 안정 및 고정비 환급 자금',
+                target: '기존 부채 및 고정비 부담 기업',
+                desc: '임대료, 공과금 등 고정 지출에 대한 사후 환급 형태 지원',
+                strategy: '환급금을 단순 예치하지 않고, 고정비 지출을 방어하는 "화재 및 시설 보장 보험"의 일시납 재원으로 사용하여 기업의 기초 체력 강화',
+                consulting: "사장님, 국가가 돌려준 임대료로 사업장의 안전 장치를 무료로 설치하십시오.",
+                icon: '⚖️'
+            },
+            {
+                title: 'DX/ESG 전환 설비 지원금',
+                target: '디지털 전환 및 노후 설비 교체 기업',
+                desc: '신규 장비 도입 비용의 최대 80~90% 무상 지원',
+                strategy: '국가 자금으로 도입한 고가 자산의 리스크(도난, 파손, 중단)를 보장 자산으로 헷징. 자산의 가치를 영구적으로 보존하는 전략 수행',
+                consulting: "국가 돈으로 산 장비가 고장 나면 손해지만, 보험을 연계하면 고장 시 현금 흐름까지 보장받습니다.",
+                icon: '🔋'
+            },
+            {
+                title: '핵심 인재 고용 유지 장려금',
+                target: '숙련 근로자 보유 및 채용 사업장',
+                desc: '인건비 및 교육 훈련비, 복리후생비 직접 지원',
+                strategy: '절감된 인건비를 "경영인 정기보험" 혹은 "퇴직연금 추가 불입"으로 전환. CEO의 상속세 재원 마련과 핵심 인재 리텐션을 동시에 해결',
+                consulting: "줄어든 인건비 부담만큼 사장님의 퇴직금과 상속세 주머니를 미리 채워두십시오.",
+                icon: '👑'
+            }
+        ];
+
+        const fundingContainer = document.getElementById('funding-cards');
+        fundingData.forEach(item => {
+            fundingContainer.innerHTML += `
+                <div class="info-card bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col h-full">
+                    <div class="text-4xl mb-4">${item.icon}</div>
+                    <span class="text-[10px] font-black text-brand-gold uppercase tracking-tighter mb-2">${item.target}</span>
+                    <h3 class="text-lg font-bold text-brand-deep mb-3">${item.title}</h3>
+                    <p class="text-xs text-slate-400 mb-6 leading-relaxed">${item.desc}</p>
+                    
+                    <div class="mt-auto">
+                        <div class="bg-slate-50 p-4 rounded-xl mb-4 border border-slate-100">
+                            <p class="text-[9px] font-bold text-brand-gold mb-2 uppercase tracking-widest">Asset Strategy</p>
+                            <p class="text-xs text-slate-700 leading-snug font-medium italic">"${item.strategy}"</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-50">
+                            <p class="text-[9px] font-bold text-brand-info mb-1 uppercase tracking-widest">Consulting Key</p>
+                            <p class="text-xs text-brand-deep font-bold leading-snug">${item.consulting}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        function initChart() {
+            const ctx = document.getElementById('strategyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['유동성 확보', '세제 혜택', '위험 방어', '상속 재원', '경영 안정', '가업 승계'],
+                    datasets: [
+                        {
+                            label: '컨설팅 전 (단순 수령)',
+                            data: [85, 20, 10, 10, 30, 5],
+                            backgroundColor: 'rgba(203, 213, 225, 0.4)',
+                            borderColor: '#CBD5E1',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '최세림 파트너 전략 (재배치)',
+                            data: [65, 95, 100, 90, 95, 85],
+                            backgroundColor: 'rgba(212, 175, 55, 0.4)',
+                            borderColor: '#D4AF37',
+                            borderWidth: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { display: false },
+                            pointLabels: { font: { weight: 'bold', size: 11 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 12 } } }
+                    }
+                }
+            });
+        }
+
+        async function exportToPDF() {
+            const btn = document.getElementById('download-btn');
+            const captureArea = document.getElementById('capture-area');
+            btn.disabled = true;
+            btn.innerText = "리포트 분석 및 생성 중...";
+            captureArea.classList.add('pdf-capture-mode');
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                const pages = document.querySelectorAll('.pdf-page');
+
+                for (let i = 0; i < pages.length; i++) {
+                    const canvas = await html2canvas(pages[i], { 
+                        scale: 2, 
+                        useCORS: true, 
+                        width: 1200,
+                        logging: false
+                    });
+                    const imgData = canvas.toDataURL('image/png');
+                    if (i > 0) doc.addPage();
+                    doc.addImage(imgData, 'PNG', 0, 0, 210, (canvas.height * 210) / canvas.width);
+                }
+                doc.save('2026_Supplementary_Budget_Consulting_Heritage.pdf');
+            } catch (error) {
+                console.error(error);
+            } finally {
+                captureArea.classList.remove('pdf-capture-mode');
+                btn.disabled = false;
+                btn.innerText = "전략 리포트 PDF 다운로드";
+            }
+        }
+
+        window.onload = initChart;
+    </script>
+</body>
+</html>
